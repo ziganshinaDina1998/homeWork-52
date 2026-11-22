@@ -1,4 +1,4 @@
-const DrawCards = (props: { rank: string; suit: string }) => {
+const DrawCard = (props: { rank: string; suit: string }) => {
     let cardSuit = '';
 
     if (props.suit === 'spades') {
@@ -21,4 +21,4 @@ const DrawCards = (props: { rank: string; suit: string }) => {
     );
 };
 
-export default DrawCards;
+export default DrawCard;
