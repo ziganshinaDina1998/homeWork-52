@@ -7,17 +7,24 @@ import { useState } from 'react';
 
 const App = () => {
     const [hand, setHand] = useState<Card[]>([]);
+    const [isCooldown, setIsCooldown] = useState<boolean>(false);
 
     const dealCards = () => {
+        if (isCooldown) return;
         const currentDeck = new CardDeck();
         const newCards = currentDeck.getCards(5);
         setHand(newCards);
+
+        setIsCooldown(true);
+        setTimeout(() => {
+            setIsCooldown(false);
+        }, 300);
     };
 
     if (hand.length === 0) {
         return (
             <div className='casino-table'>
-                <button className='deal-btn' onClick={dealCards}>Раздать карты!</button>
+                <button className='deal-btn' onClick={dealCards} disabled={isCooldown}>Раздать карты!</button>
             </div>
         );
     }
@@ -34,7 +41,7 @@ const App = () => {
             </div>
 
             <h2 className='gold-text'>Комбинация: {combo}</h2>
-            <button className='deal-btn' onClick={dealCards}>Раздать карты!</button>
+            <button className='deal-btn' onClick={dealCards} disabled={isCooldown}>Раздать карты!</button>
         </div>
     );
 
