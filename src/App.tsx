@@ -1,7 +1,8 @@
-import './App.css'
-import DrawCard from './DrawCard.tsx'
+import './App.css';
+import DrawCard from './DrawCard.tsx';
 import Card from './lib/Card.ts';
 import CardDeck from './lib/CardDeck.ts';
+import PokerHand from './lib/PokerHand.ts';
 import { useState } from 'react';
 
 const App = () => {
@@ -21,6 +22,9 @@ const App = () => {
         );
     }
 
+    const pokerHand = new PokerHand(hand);
+    const combo = pokerHand.getOutcome();
+
     return (
         <div className='casino-table'>
             <div className='playingCards faceImages'>
@@ -29,10 +33,11 @@ const App = () => {
                 ))}
             </div>
 
+            <h2 className='gold-text'>Комбинация: {combo}</h2>
             <button className='deal-btn' onClick={dealCards}>Раздать карты!</button>
         </div>
     );
 
 };
 
-export default App
+export default App;
